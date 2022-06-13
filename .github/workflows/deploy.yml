@@ -1,0 +1,20 @@
+name: staging deploy
+on:
+  push:
+    branches: 
+      - master
+deploy:
+  runs-on: ubuntu-20.04
+  needs: build_and_push
+  timeout-minutes: 20
+  steps:
+    - name: Run Deployment to staging
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.ID_RSA }}
+        envs: GITHUB_SHA, DOC_API_TOKEN, REGISTRY
+        script_stop: true
+        script: |
+          ls
