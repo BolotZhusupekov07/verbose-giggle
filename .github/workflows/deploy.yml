@@ -20,6 +20,8 @@ jobs:
           script_stop: true
           envs: GITHUB_SHA, REGISTRY, DOC_API_TOKEN
           command: |
+            docker ps
+            ls
             export DOCKER_FRONTEND_IMAGE_TAG=faf99bc
             echo $DOCKER_FRONTEND_IMAGE_TAG
             
