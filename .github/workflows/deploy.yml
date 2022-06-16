@@ -18,5 +18,7 @@ jobs:
           script: |
             ls
             docker ps
+            docker ps
+            
  
  
