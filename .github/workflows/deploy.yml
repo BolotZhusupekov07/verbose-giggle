@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Run Deployment to staging
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@master
         env:
           GITHUB_SHA: ${{ github.sha }}
         with:
@@ -19,7 +19,7 @@ jobs:
           key: ${{ secrets.ID_RSA }}
           script_stop: true
           envs: GITHUB_SHA, REGISTRY, DOC_API_TOKEN
-          command: |
+          script: |
             docker ps
             ls
             export DOCKER_FRONTEND_IMAGE_TAG=faf99bc
